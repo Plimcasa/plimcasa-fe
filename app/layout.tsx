@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -9,19 +9,20 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  maximumScale: 5.0,
+  userScalable: true,
+  viewportFit: "cover",
+  themeColor: "#0EA5E9",
+};
+
 export const metadata: Metadata = {
   title: "Plim - Serviços de Limpeza",
   description: "Conecte-se com profissionais qualificados de limpeza. Rápido, seguro e confiável.",
   keywords: ["limpeza", "faxina", "diarista", "profissional de limpeza", "plim"],
   manifest: "/manifest.json",
-  themeColor: "#0EA5E9",
-  viewport: {
-    width: "device-width",
-    initialScale: 1.0,
-    maximumScale: 5.0,
-    userScalable: true,
-    viewportFit: "cover",
-  },
   openGraph: {
     title: "Plim - Serviços de Limpeza",
     description: "Conecte-se com profissionais qualificados de limpeza",
