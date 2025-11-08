@@ -98,17 +98,17 @@ export default function ProviderDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-safe">
       {/* Header */}
-      <header className="border-b sticky top-0 bg-background z-10">
-        <div className="container mx-auto px-4 py-4">
+      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <nav className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">Plim</span>
+            <Link href="/" className="flex items-center gap-2 touch-manipulation">
+              <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              <span className="text-lg sm:text-xl font-bold">Plim</span>
             </Link>
-            <Button variant="ghost" size="sm">
-              <User className="h-4 w-4 mr-2" />
+            <Button variant="ghost" size="sm" className="h-9 px-2 sm:px-3 touch-manipulation">
+              <User className="h-4 w-4 sm:mr-2" />
               <span className="hidden sm:inline">Perfil</span>
             </Button>
           </nav>
@@ -116,21 +116,21 @@ export default function ProviderDashboard() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-6 md:py-8">
-        <div className="mb-6 md:mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">Painel do Prestador</h1>
-          <p className="text-muted-foreground">Gerencie suas solicitações de serviço</p>
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 md:py-8 max-w-4xl">
+        <div className="mb-4 sm:mb-6 md:mb-8">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">Painel do Prestador</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Gerencie suas solicitações de serviço</p>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8">
-          <Card>
-            <CardContent className="p-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
+          <Card className="touch-manipulation">
+            <CardContent className="p-3 sm:p-4">
               <div className="flex flex-col">
-                <p className="text-xs text-muted-foreground mb-1">Pendentes</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mb-0.5 sm:mb-1">Pendentes</p>
                 <div className="flex items-center justify-between">
-                  <p className="text-2xl font-bold">{pendingRequests.length}</p>
-                  <Clock className="h-6 w-6 text-warning" />
+                  <p className="text-xl sm:text-2xl font-bold">{pendingRequests.length}</p>
+                  <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-warning" />
                 </div>
               </div>
             </CardContent>
@@ -174,15 +174,15 @@ export default function ProviderDashboard() {
         </div>
 
         {/* Service Requests Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="pending" className="text-xs sm:text-sm">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-3 h-auto p-1">
+            <TabsTrigger value="pending" className="text-xs sm:text-sm min-h-[40px] data-[state=active]:bg-background">
               Pendentes ({pendingRequests.length})
             </TabsTrigger>
-            <TabsTrigger value="accepted" className="text-xs sm:text-sm">
+            <TabsTrigger value="accepted" className="text-xs sm:text-sm min-h-[40px] data-[state=active]:bg-background">
               Confirmados ({acceptedRequests.length})
             </TabsTrigger>
-            <TabsTrigger value="completed" className="text-xs sm:text-sm">
+            <TabsTrigger value="completed" className="text-xs sm:text-sm min-h-[40px] data-[state=active]:bg-background">
               Concluídos ({completedRequests.length})
             </TabsTrigger>
           </TabsList>
@@ -199,20 +199,20 @@ export default function ProviderDashboard() {
               </Card>
             ) : (
               pendingRequests.map((request) => (
-                <Card key={request.id}>
-                  <CardContent className="p-4 md:p-6">
-                    <div className="space-y-4">
-                      <div className="flex items-start justify-between">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <h3 className="font-semibold text-lg">{request.type}</h3>
-                            <Badge variant="outline">Novo</Badge>
+                <Card key={request.id} className="touch-manipulation">
+                  <CardContent className="p-3 sm:p-4 md:p-6">
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="space-y-0.5 sm:space-y-1 flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                            <h3 className="font-semibold text-base sm:text-lg truncate">{request.type}</h3>
+                            <Badge variant="outline" className="text-xs flex-shrink-0">Novo</Badge>
                           </div>
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-xs sm:text-sm text-muted-foreground truncate">
                             Cliente: {request.clientName}
                           </p>
                         </div>
-                        <p className="text-xl md:text-2xl font-bold text-primary">{request.price}</p>
+                        <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary flex-shrink-0">{request.price}</p>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
@@ -232,21 +232,21 @@ export default function ProviderDashboard() {
                         <span>🚿 {request.bathrooms} banheiros</span>
                       </div>
 
-                      <div className="flex gap-3 pt-2">
+                      <div className="flex gap-2 sm:gap-3 pt-2">
                         <Button
                           variant="default"
-                          className="flex-1 bg-success hover:bg-success/90"
+                          className="flex-1 bg-success hover:bg-success/90 min-h-[44px] touch-manipulation text-sm sm:text-base"
                           onClick={() => handleAccept(request.id)}
                         >
-                          <CheckCircle className="h-4 w-4 mr-2" />
+                          <CheckCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                           Aceitar
                         </Button>
                         <Button
                           variant="outline"
-                          className="flex-1"
+                          className="flex-1 min-h-[44px] touch-manipulation text-sm sm:text-base"
                           onClick={() => handleReject(request.id)}
                         >
-                          <XCircle className="h-4 w-4 mr-2" />
+                          <XCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5 sm:mr-2" />
                           Recusar
                         </Button>
                       </div>

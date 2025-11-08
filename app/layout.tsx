@@ -20,16 +20,30 @@ export const metadata: Metadata = {
     initialScale: 1.0,
     maximumScale: 5.0,
     userScalable: true,
+    viewportFit: "cover",
   },
   openGraph: {
     title: "Plim - Serviços de Limpeza",
     description: "Conecte-se com profissionais qualificados de limpeza",
     type: "website",
+    locale: "pt_BR",
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
+    statusBarStyle: "black-translucent",
     title: "Plim",
+    startupImage: [
+      {
+        url: "/icon-512.png",
+        media: "(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)",
+      },
+    ],
+  },
+  applicationName: "Plim",
+  formatDetection: {
+    telephone: true,
+    address: true,
+    email: true,
   },
 };
 
